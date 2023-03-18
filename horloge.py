@@ -82,8 +82,6 @@ afficher_heure(temps)
 def time_trigger(sonnerie):
 
     heures, minutes, secondes = sonnerie
-    alarme_heure = -1
-    alarme_minutes = 0
 
     #Premièrement, je souhaite d'abord afficher l'heure actuelle
     print("Il est actuellement :", time.strftime("%H:%M:%S"))
@@ -99,9 +97,8 @@ def time_trigger(sonnerie):
             alarme_minutes = int(input("Veuillez entrer les minutes (entre 0 et 59) : "))
             if 0 < alarme_heure < 24 and 0 < alarme_minutes < 60:
                 break
-    else:
-        print("Erreur, veuillez réessayer")
-        print("Il est actuellement :", time.strftime("%H:%M:%S"))
+            else:
+                print("Erreur, veuillez réessayer")
 
     while True:
         heure_actuelle = time.localtime().tm_hour
