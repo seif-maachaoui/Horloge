@@ -77,7 +77,51 @@ def afficher_heure(heure):
 #J'apelle ma fonction en lui passant en paramètre temps qui va extraire les valeurs des heures, minutes et secondes
 #Puis les afficher au format hh:mm:ss
 afficher_heure(temps)
-        
+
+#Je déclare une fonction alarme
+def time_trigger(sonnerie):
+
+    heures, minutes, secondes = sonnerie
+    alarme_heure = -1
+    alarme_minutes = 0
+
+    #Premièrement, je souhaite d'abord afficher l'heure actuelle
+    print("Il est actuellement :", time.strftime("%H:%M:%S"))
+
+    #Deuxièment, je souhaite que l'utilisateur puisse régler l'alarme
+    alarme = input("Voulez-vous régler une alarme ? (y/n)")
+
+    #Si l'utilisateur souhaite régler l'alarme, alors...
+    if alarme == 'y':
+        #Boucle while, pour que la boucle continue tant que l'utilisateur n'a pas rentrer les bonnes valeurs
+        while True:
+            alarme_heure = int(input("Veuillez entrer une heure (entre 0 et 23) : "))
+            alarme_minutes = int(input("Veuillez entrer les minutes (entre 0 et 59) : "))
+            if 0 < alarme_heure < 24 and 0 < alarme_minutes < 60:
+                break
+    else:
+        print("Erreur, veuillez réessayer")
+        print("Il est actuellement :", time.strftime("%H:%M:%S"))
+
+    while True:
+        heure_actuelle = time.localtime().tm_hour
+        minute_actuelle = time.localtime().tm_min
+
+        #Si l'heure actuelle et minute actuelle correspond à l'heure de l'alarme, alors..
+        if heure_actuelle ==  alarme_heure and minute_actuelle == alarme_minutes:
+            print("L'alarme sonne ! Il est :", f"{alarme_heure:02d}:{alarme_minutes:02d}")
+            #Si c'est le cas, alors on sort de la boucle
+            break
+        else:
+            #Sinon, on patiente le temps que l'alarme se déclenche
+            print("Veuillez patienter...", end='\r')
+            
+            #On attends toujours une seconde avant de vérifier
+            time.sleep(1)
+
+#Appel de ma fonction 
+time_trigger((10, 29, 00))
+    
 
 
 
