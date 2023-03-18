@@ -39,3 +39,45 @@ temps = horloge(16, 30, 00, 10)
 #Puis j'affiche le temps après 10 secondes
 print("Le temps après 10 secondes : ", f"{temps[0]:02d}:{temps[1]:02d}:{temps[2]:02d}")
 
+#Je créer une fonction afficher_heure qui prend en paramètre un tuple heure
+def afficher_heure(heure):
+
+    #Je shouaite extraire le contenu de mon tuple, pour manipuler les éléments à l'intérieur
+    heures, minutes, secondes = heure
+    print("Heure modifiable :", f"{heures:02d}:{minutes:02}:{secondes:02d}")
+
+    #Je créer une variable, pour demander à l'utilisateur si il souhaite changer l'heure
+    change_hour = input("Voulez-vous changer l'heure ? (y/n)")
+    
+    #Si l'utilisateur souhaite changer l'heure, alors...
+    if change_hour == "y":
+        #La boucle while ici va demander une nouvelle heure jusqu'à qu'elle soit accepté
+        while True :
+            
+            #Je place mes variables pour demander, l'heure, les minutes et les secondes
+            heures = input("Veuillez entrer une heure (entre 0 et 23): ")
+            minutes = input("Veuillez entrer les minutes (entre 0 et 59): ")
+            secondes = input("Veuillez entrer les secondes (entre 0 et 59): ")
+
+            #Je vérifie ici que les valeurs qui ont été entrées soient bien des nombres, des integers
+            if heures.isdigit() and minutes.isdigit() and secondes.isdigit():
+                heures = int(heures)
+                minutes = int(minutes)
+                secondes = int(secondes)
+                #Je rajoute une condition, qui vérifie si l'heure, les minutes, et les secondes sont bien conforme
+                if 0 <= heures <= 23 and 0 <= minutes <= 59 and 0 <= secondes <=59:
+                    #Si c'est le cas, j'utilise un break pour sortir de la boucle et passer à la suite
+                    break
+                else: #Sinon si l'utilisateur entre des valeurs au-dessus de celles autorisées, alors...
+                    if heures > 23 and minutes > 59 and secondes > 59:
+                        print("Erreur, votre heure n'est pas valide, veuillez réessayer.\n")
+
+    #Enfin, j'affiche la nouvelle heure à l'utilisateur
+    print("La nouvelle heure :", f"{heures:02d}:{minutes:02d}:{secondes:02d}")
+#J'apelle ma fonction en lui passant en paramètre temps qui va extraire les valeurs des heures, minutes et secondes
+#Puis les afficher au format hh:mm:ss
+afficher_heure(temps)
+        
+
+
+
